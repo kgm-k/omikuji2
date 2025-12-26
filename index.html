@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNSまとめ＆おみくじサイト</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Hachi Maru Pop', sans-serif;
@@ -21,9 +23,7 @@
             color: white;
         }
 
-        h1 {
-            margin: 0;
-        }
+        h1 { margin: 0; }
 
         .sns-links {
             margin-top: 30px;
@@ -61,204 +61,146 @@
             transform: scale(1.1);
         }
 
-        #omikuji button:active {
-            background-color: #ad1457;
-            transform: scale(1);
-        }
-
         #omikuji-result {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
         }
 
-        #share-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #1da1f2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #share-button:hover {
-            background-color: #0d8de3;
-        }
-
-        #limit-message {
-            margin-top: 20px;
-            color: #f44336;
-            font-weight: bold;
-        }
-
         .probability-box {
-            margin-top: 20px;
+            margin: 20px auto;
             padding: 10px;
             background-color: #ffffff;
-            color: #00796b;
-            font-size: 10px;
-            border-radius: 5px;
-            display: inline-block;
-            border: 1px solid #ddd;
+            font-size: 12px;
+            border-radius: 10px;
             width: 60%;
             max-width: 300px;
-            text-align: left;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        #probability-list {
-            margin-top: 5px;
-            font-size: 12px;
-            color: #333;
-            padding: 0 10px;
-        }
-
-        #probability-list li {
-            margin-bottom: 5px;
-        }
-
-        #comments-section {
-            margin-top: 50px;
-        }
-
-        #comment-form input, #comment-form textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        #comment-form button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #comment-form button:hover {
-            background-color: #388e3c;
-        }
-
-        #comments-list {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
+        /* コメント欄 */
+        #comment-section {
+            margin: 50px auto;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
         }
 
         .comment {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
         }
 
-        .comment strong {
-            font-size: 16px;
-            color: #0288d1;
+        .comment:last-child {
+            border-bottom: none;
         }
 
-        .comment p {
-            font-size: 14px;
-            color: #555;
+        .comment-name {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comment-text {
+            font-size: 0.9em;
+            white-space: pre-wrap;
+        }
+
+        iframe {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>ようこそ！</h1>
-        <p>SNSリンクとおみくじを楽しもう！</p>
-    </header>
+<header>
+    <h1>ようこそ！</h1>
+    <p>SNSリンクとおみくじを楽しもう！</p>
+</header>
 
-    <!-- SNSリンクセクション -->
-    <div class="sns-links">
-        <a href="https://twitter.com" target="_blank" class="sns-twitter">Twitter</a>
-        <a href="https://mixi.social" target="_blank" class="sns-mixi2">mixi2</a>
-        <a href="https://misskey.io" target="_blank" class="sns-misskey">Misskey</a>
-    </div>
+<div class="sns-links">
+    <a href="https://twitter.com/oo" target="_blank">Twitter</a>
+    <a href="https://misskey.flowers/" target="_blank">Misskey</a>
+</div>
 
-    <main>
-        <section id="omikuji">
-            <h2>おみくじ</h2>
-            <button id="omikuji-button">おみくじを引く</button>
+<main>
+    <section id="omikuji">
+        <h2>おみくじ</h2>
+        <button id="omikuji-button">おみくじを引く</button>
+        <p id="omikuji-result"></p>
 
-            <p id="omikuji-result"></p>
-            <button id="share-button">結果をシェア</button>
+        <div class="probability-box">
+            <p>大大吉 0.1% / 大吉 15% / 中吉 30% / 吉 40% / 凶 10%</p>
+        </div>
+    </section>
 
-            <!-- 排出確率一覧（白い箱内に表示） -->
-            <div class="probability-box">
-                <h3>おみくじの排出確率</h3>
-                <ul id="probability-list">
-                    <li>大大吉 - 0.1%</li>
-                    <li>大吉 - 15%</li>
-                    <li>中吉 - 30%</li>
-                    <li>吉 - 40%</li>
-                    <li>凶 - 10%</li>
-                </ul>
-            </div>
+    <!-- コメント欄 -->
+    <section id="comment-section">
+        <h2>コメント</h2>
 
-            <p id="limit-message"></p>
-        </section>
+        <div id="comments"></div>
 
-        <!-- コメント投稿セクション -->
-        <section id="comments-section">
-            <h2>コメントを投稿</h2>
-            <form id="comment-form">
-                <input type="text" id="name" placeholder="名前" required>
-                <textarea id="comment" placeholder="コメント" required></textarea>
-                <button type="submit">コメントを投稿</button>
-            </form>
+        <!-- Googleフォーム埋め込み -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/viewform?embedded=true"
+          height="450"
+          frameborder="0">
+        </iframe>
+    </section>
+</main>
 
-            <div id="comments-list">
-                <!-- コメントがここに表示されます -->
-            </div>
-        </section>
-    </main>
+<footer>
+    <p>© 2024 SNSまとめ＆おみくじサイト</p>
+</footer>
 
-    <footer>
-        <p>© 2024 SNSまとめ＆おみくじサイト</p>
-    </footer>
+<!-- おみくじJS -->
+<script>
+const results = [
+    { result: "大大吉", message: "あなたは神です！✨", color: "#ffd700", weight: 0.001 },
+    { result: "大吉", message: "神！🌟", color: "#4caf50", weight: 0.15 },
+    { result: "中吉", message: "良い一日になりそう！", color: "#2196f3", weight: 0.3 },
+    { result: "吉", message: "努力が実を結びます！", color: "#ffeb3b", weight: 0.4 },
+    { result: "凶", message: "慎重に行こう！", color: "#f44336", weight: 0.1 }
+];
 
-    <script>
-        let clickCount = 0;
-        const maxClicks = 3;
+function getRandom() {
+    let total = results.reduce((s, r) => s + r.weight, 0);
+    let rand = Math.random() * total;
+    for (const r of results) {
+        rand -= r.weight;
+        if (rand <= 0) return r;
+    }
+}
 
-        const results = [
-            { result: "大大吉", message: "最高の幸運が待っています！✨", color: "#ffd700", weight: 0.001 },
-            { result: "大吉", message: "今日は最高の日！🌟", color: "#4caf50", weight: 0.15 },
-            { result: "中吉", message: "良い一日になりそうです！😊", color: "#2196f3", weight: 0.3 },
-            { result: "吉", message: "少しの努力が実を結びます！💪", color: "#ffeb3b", weight: 0.4 },
-            { result: "凶", message: "慎重に行動しましょう！⚠️", color: "#f44336", weight: 0.1 }
-        ];
+document.getElementById("omikuji-button").onclick = () => {
+    const r = getRandom();
+    const el = document.getElementById("omikuji-result");
+    el.textContent = `${r.result} - ${r.message}`;
+    el.style.color = r.color;
+};
+</script>
 
-        function getWeightedRandomResult() {
-            let totalWeight = results.reduce((sum, result) => sum + result.weight, 0);
-            let random = Math.random() * totalWeight;
+<!-- コメント読み込み -->
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+d3.csv(
+  "https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/export?format=csv",
+  function(error, data) {
+    if (error) return;
+    data.reverse();
+    let html = "";
+    data.forEach(row => {
+      html += `
+        <div class="comment">
+          <div class="comment-name">${row["名前"] || "名無し"}</div>
+          <div class="comment-text">${row["コメント"] || ""}</div>
+        </div>`;
+    });
+    document.getElementById("comments").innerHTML = html;
+  }
+);
+</script>
 
-            for (let i = 0; i < results.length; i++) {
-                random -= results[i].weight;
-                if (random <= 0) {
-                    return results[i];
-                }
-            }
-        }
-
-        document.getElementById("omikuji-button").addEventListener("click", function() {
-            if (clickCount < maxClicks) {
-                const randomResult = getWeightedRandomResult();
-                document.getElementById("omikuji-result").textContent = `${randomResult.result} - ${randomResult.message}`;
-                document.getElementById("omikuji-result").style.color = randomResult.color;
-
-                clickCount++;
-                if (clickCount === maxClicks) {
-                    document.getElementById("limit-message").textContent = "回数制限に達しました。明日またおみくじを引いてください！";
-                }
-            }
-        });
-
-        document.getElementById("share-button").addEventListener("click", function() {
-            const result
+</body>
+</html>
