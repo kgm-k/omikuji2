@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SNSまとめ＆おみくじサイト</title>
 
+  <!-- フォント -->
   <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
 
   <style>
@@ -38,6 +39,7 @@
       color: #0288d1;
     }
 
+    /* ===== おみくじ ===== */
     #omikuji {
       margin-top: 50px;
     }
@@ -50,8 +52,7 @@
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       font-family: 'Hachi Maru Pop', sans-serif;
     }
 
@@ -114,13 +115,25 @@
       transform: scale(1.05);
     }
 
-    .comment-view {
-      margin-top: 15px;
-      width: 100%;
-      height: 350px;
-      border: none;
-      border-radius: 15px;
+    .comment-item {
       background: white;
+      border-radius: 15px;
+      padding: 12px 15px;
+      margin: 10px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .comment-name {
+      font-size: 14px;
+      color: #9c27b0;
+      margin-bottom: 5px;
+    }
+
+    .comment-text {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
     }
 
     footer {
@@ -142,6 +155,7 @@
 </div>
 
 <main>
+  <!-- おみくじ -->
   <section id="omikuji">
     <h2>おみくじ</h2>
     <button id="omikuji-button">おみくじを引く</button>
@@ -184,10 +198,7 @@
     ></iframe>
 
     <h3>みんなのコメント</h3>
-    <iframe
-      class="comment-view"
-      src="https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/htmlview"
-    ></iframe>
+    <div id="comment-list"></div>
   </section>
 </main>
 
@@ -198,6 +209,7 @@
 <script>
   let submitted = false;
 
+  /* ===== おみくじ ===== */
   const results = [
     { result: "大大吉", message: "あなたは神です！✨", color: "#ffd700", weight: 0.001 },
     { result: "大吉", message: "神！🌟", color: "#4caf50", weight: 0.15 },
@@ -221,6 +233,32 @@
     el.textContent = `${r.result} - ${r.message}`;
     el.style.color = r.color;
   };
+
+  /* ===== コメント表示（匿名対応） ===== */
+  fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
+    .then(res => res.text())
+    .then(text => {
+      const rows = text.trim().split("\n").slice(1).reverse();
+      const list = document.getElementById("comment-list");
+
+      rows.forEach(row => {
+        const cols = row.split(",");
+
+        let name = (cols[1] || "").replace(/"/g, "").trim();
+        if (!name) name = "匿名";
+
+        let comment = (cols[2] || "").replace(/"/g, "").trim();
+        if (!comment) return;
+
+        const div = document.createElement("div");
+        div.className = "comment-item";
+        div.innerHTML = `
+          <div class="comment-name">${name}</div>
+          <div class="comment-text">${comment}</div>
+        `;
+        list.appendChild(div);
+      });
+    });
 </script>
 </body>
 </html>
