@@ -16,8 +16,6 @@ body {
 
 header{
   padding:20px;
-  background:#0288d1;
-  color:#fff;
 }
 
 .welcome {
@@ -58,7 +56,7 @@ header{
   padding:15px;
   width:90%;
   max-width:500px;
-  background:rgba(255,255,255,0.95);
+  background: rgba(173, 216, 230, 0.5); /* 薄い水色パステル */
   border-radius:18px;
   box-shadow:0 6px 12px rgba(0,0,0,0.15);
 }
@@ -93,6 +91,8 @@ header{
 details{
   border-radius:18px;
   margin-top:10px;
+  overflow:hidden;
+  transition: all 0.3s ease;
 }
 
 summary{
@@ -103,7 +103,7 @@ summary{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:#f2f2f2;
+  background:rgba(255,255,255,0.2);
   border-radius:16px;
   transition:.2s;
 }
@@ -118,10 +118,6 @@ details[open] summary::after{
   content:"－";
 }
 
-summary:active{
-  background:#e5e5e5;
-}
-
 .invite-list, #comment-list{
   padding:10px 0 0 0;
 }
@@ -130,7 +126,7 @@ summary:active{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:#fafafa;
+  background: rgba(173, 216, 230, 0.3); /* 薄い水色パステル */
   border-radius:12px;
   padding:10px 12px;
   margin:6px 0;
@@ -173,7 +169,7 @@ summary:active{
 }
 
 .comment-item{
-  background:#fff;
+  background: rgba(173, 216, 230, 0.3); /* 薄い水色パステル */
   border-radius:12px;
   padding:10px;
   margin:8px 0;
@@ -191,8 +187,8 @@ summary:active{
 <body>
 
 <header>
-  <h1 class="welcome">ようこそ♪</h1>
-  <p class="subtitle">色んなリンク集</p>
+  <h1 class="welcome">こんにちは♪</h1>
+  <p class="subtitle">SNSリンクとおみくじを楽しもう！</p>
 </header>
 
 <div class="sns-links">
