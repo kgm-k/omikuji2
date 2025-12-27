@@ -11,133 +11,169 @@
 body {
   font-family: 'Hachi Maru Pop', sans-serif;
   background: linear-gradient(135deg, #2196f3, #9c27b0);
-  color: #333;
-  text-align: center;
-  margin: 0;
+  margin:0;
+  text-align:center;
+  color:#333;
 }
 
-header {
-  padding: 20px;
-  background-color: #0288d1;
-  color: white;
+/* ヘッダー */
+header{
+  padding:20px;
+  background:#0288d1;
+  color:#fff;
 }
 
-.sns-links {
-  margin-top: 30px;
+/* SNSリンク */
+.sns-links a{
+  display:block;
+  margin:10px auto;
+  width:80%;
+  max-width:300px;
+  padding:12px;
+  background:#fff;
+  border-radius:30px;
+  text-decoration:none;
+  color:#333;
+  box-shadow:0 4px 6px rgba(0,0,0,0.15);
 }
 
-.sns-links a {
-  display: block;
-  margin: 10px auto;
-  width: 80%;
-  max-width: 300px;
-  padding: 12px;
-  background: white;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+/* カード共通 */
+.card{
+  margin:20px auto;
+  padding:20px;
+  width:90%;
+  max-width:500px;
+  background:rgba(255,255,255,0.95);
+  border-radius:18px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.15);
 }
 
-.card {
-  margin: 40px auto;
-  padding: 25px;
-  width: 90%;
-  max-width: 500px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 20px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+/* ボタン共通 */
+.main-button{
+  font-family:'Hachi Maru Pop',sans-serif;
+  padding:10px 26px;
+  border:none;
+  border-radius:30px;
+  background:#e91e63;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.main-button {
-  font-family: 'Hachi Maru Pop', sans-serif;
-  padding: 12px 30px;
-  border-radius: 30px;
-  border: none;
-  background-color: #e91e63;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+.main-button:hover{
+  background:#c2185b;
+  transform:scale(1.05);
 }
 
-.main-button:hover {
-  background-color: #c2185b;
-  transform: scale(1.05);
+.main-button:active{
+  transform:scale(.95);
 }
 
 /* おみくじ */
-#omikuji-result {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+#omikuji-result{
+  margin-top:15px;
+  font-weight:bold;
+  font-size:18px;
 }
 
-/* 招待コード */
-.invite-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+/* 招待コード折りたたみ */
+details{
+  border-radius:18px;
 }
 
-.invite-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  border-radius: 16px;
-  padding: 14px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+summary{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#f2f2f2;
+  border-radius:16px;
+  transition:.2s;
 }
 
-.invite-info {
-  text-align: left;
+summary::after{
+  content:"＋";
+  font-size:20px;
+  transition:.2s;
 }
 
-.service-name {
-  font-size: 14px;
-  color: #666;
+details[open] summary::after{
+  content:"－";
 }
 
-.invite-code {
-  font-size: 16px;
-  color: #9c27b0;
-  word-break: break-all;
+summary:active{
+  background:#e5e5e5;
 }
 
-.copy-message {
-  font-size: 12px;
-  color: #4caf50;
-  height: 1em;
+/* 招待コード中身 */
+.invite-list{
+  padding:10px 0 0 0;
+}
+
+.invite-box{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fafafa;
+  border-radius:12px;
+  padding:10px 12px;
+  margin:6px 0;
+}
+
+.invite-info{
+  text-align:left;
+}
+
+.service-name{
+  font-size:14px;
+  color:#666;
+}
+
+.invite-code{
+  font-size:15px;
+  color:#9c27b0;
+  word-break:break-all;
+}
+
+.copy-message{
+  font-size:12px;
+  color:#4caf50;
+  height:1em;
 }
 
 /* コメント */
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.comment-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
 .comment-input,
-.comment-textarea {
-  font-family: 'Hachi Maru Pop', sans-serif;
-  padding: 12px;
-  border-radius: 15px;
-  border: 2px solid #ce93d8;
+.comment-textarea{
+  font-family:'Hachi Maru Pop',sans-serif;
+  padding:10px;
+  border-radius:15px;
+  border:2px solid #ce93d8;
+  font-size:14px;
 }
 
-.comment-item {
-  background: white;
-  border-radius: 15px;
-  padding: 12px;
-  margin: 10px 0;
-  text-align: left;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.comment-item{
+  background:#fff;
+  border-radius:12px;
+  padding:10px;
+  margin:8px 0;
+  text-align:left;
+  box-shadow:0 3px 6px rgba(0,0,0,0.1);
 }
 
-.comment-name {
-  font-size: 14px;
-  color: #9c27b0;
+.comment-name{
+  font-size:14px;
+  color:#9c27b0;
+  font-weight:600;
 }
 </style>
 </head>
@@ -155,18 +191,16 @@ header {
 </div>
 
 <!-- おみくじ -->
-<section class="card">
+<section class="card" id="omikuji">
   <h2>おみくじ</h2>
   <button class="main-button" id="omikuji-button">おみくじを引く</button>
   <p id="omikuji-result"></p>
 </section>
 
-<!-- 招待コード（折りたたみ） -->
+<!-- 招待コード -->
 <details class="card">
-  <summary style="font-size:18px; cursor:pointer;">ポイ活 招待コード</summary>
-
+  <summary>ポイ活 招待コード</summary>
   <div class="invite-list">
-
     <div class="invite-box">
       <div class="invite-info">
         <div class="service-name">トリマ</div>
@@ -175,7 +209,6 @@ header {
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
       <div class="invite-info">
         <div class="service-name">レシチャレ</div>
@@ -184,7 +217,6 @@ header {
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
       <div class="invite-info">
         <div class="service-name">マクロミル</div>
@@ -193,37 +225,29 @@ header {
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
       <div class="invite-info">
         <div class="service-name">dジョブ</div>
         <div class="invite-code">https://djob.docomo.ne.jp/invite/XXXXXX</div>
       </div>
-      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button" style="text-decoration:none;">
-        開く
-      </a>
+      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button" style="text-decoration:none;">開く</a>
     </div>
-
   </div>
 </details>
 
-<!-- コメント -->
+<!-- コメント欄 -->
 <section class="card">
   <h2>コメント</h2>
-
   <form class="comment-form"
     action="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/formResponse"
     method="POST"
     target="hidden_iframe"
-    onsubmit="submitted=true;"
-  >
+    onsubmit="submitted=true;">
     <input type="text" name="entry.243187617" placeholder="名前（任意）" class="comment-input">
     <textarea name="entry.4743221" placeholder="コメント" required class="comment-textarea"></textarea>
     <button type="submit" class="main-button">送信</button>
   </form>
-
   <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){alert('送信しました！')}"></iframe>
-
   <div id="comment-list"></div>
 </section>
 
@@ -235,34 +259,34 @@ header {
 let submitted = false;
 
 /* おみくじ */
-const results = [
-  { t:"大大吉", m:"あなたは神です！", c:"#ffd700", w:0.001 },
-  { t:"大吉", m:"最高の運勢！", c:"#4caf50", w:0.15 },
-  { t:"中吉", m:"いい一日になりそう", c:"#2196f3", w:0.3 },
-  { t:"吉", m:"がんばれば実る", c:"#ffeb3b", w:0.4 },
-  { t:"凶", m:"慎重に行こう", c:"#f44336", w:0.1 }
+const results=[
+ {t:"大大吉",m:"あなたは神です！",c:"#ffd700",w:0.001},
+ {t:"大吉",m:"最高の運勢！",c:"#4caf50",w:0.15},
+ {t:"中吉",m:"いい一日になりそう",c:"#2196f3",w:0.3},
+ {t:"吉",m:"がんばれば実る",c:"#ffeb3b",w:0.4},
+ {t:"凶",m:"慎重に行こう",c:"#f44336",w:0.1}
 ];
 
-document.getElementById("omikuji-button").onclick = () => {
-  let r = Math.random(), s = 0;
-  for (let o of results) {
-    s += o.w;
-    if (r <= s) {
-      const el = document.getElementById("omikuji-result");
-      el.textContent = o.t + " - " + o.m;
-      el.style.color = o.c;
-      break;
-    }
-  }
+document.getElementById("omikuji-button").onclick=()=>{
+ let r=Math.random(), s=0;
+ for(let o of results){
+   s+=o.w;
+   if(r<=s){
+     const el=document.getElementById("omikuji-result");
+     el.textContent=o.t+" - "+o.m;
+     el.style.color=o.c;
+     break;
+   }
+ }
 };
 
 /* コピー */
-function copyText(btn) {
-  const box = btn.parentElement;
-  const text = box.querySelector(".invite-code").textContent;
-  const msg = box.querySelector(".copy-message");
-  navigator.clipboard.writeText(text).then(() => {
-    msg.textContent = "コピーしました！";
+function copyText(btn){
+  const box=btn.parentElement;
+  const text=box.querySelector(".invite-code").textContent;
+  const msg=box.querySelector(".copy-message");
+  navigator.clipboard.writeText(text).then(()=>{
+    msg.textContent="コピーしました！";
     setTimeout(()=>msg.textContent="",2000);
   });
 }
@@ -271,17 +295,17 @@ function copyText(btn) {
 fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
 .then(r=>r.text())
 .then(t=>{
-  t.trim().split("\n").slice(1).reverse().forEach(row=>{
-    const c=row.split(",");
-    let name=(c[1]||"").replace(/"/g,"").trim()||"匿名";
-    let text=(c[2]||"").replace(/"/g,"").trim();
-    if(!text) return;
-    document.getElementById("comment-list").innerHTML +=
-      `<div class="comment-item">
-        <div class="comment-name">${name}</div>
-        <div>${text}</div>
-      </div>`;
-  });
+ t.trim().split("\n").slice(1).reverse().forEach(row=>{
+   const c=row.split(",");
+   let name=(c[1]||"").replace(/"/g,"").trim()||"匿名";
+   let text=(c[2]||"").replace(/"/g,"").trim();
+   if(!text) return;
+   document.getElementById("comment-list").innerHTML+=
+     `<div class="comment-item">
+       <div class="comment-name">${name}</div>
+       <div>${text}</div>
+     </div>`;
+ });
 });
 </script>
 
