@@ -128,10 +128,8 @@ details[open] summary::after{
   border-radius:12px;
   padding:10px 12px;
   margin:6px 0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  text-align:left;
 }
 
 .invite-info{
@@ -174,6 +172,12 @@ details[open] summary::after{
   font-size:14px;
   color:#9c27b0;
   font-weight:600;
+  margin-bottom:4px;
+}
+
+.comment-text{
+  font-size:14px;
+  color:#333;
 }
 </style>
 </head>
@@ -299,7 +303,7 @@ fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrh
     document.getElementById("comment-list").innerHTML +=
       `<div class="comment-item">
         <div class="comment-name">${name}</div>
-        <div>${text}</div>
+        <div class="comment-text">${text}</div>
       </div>`;
   });
 });
