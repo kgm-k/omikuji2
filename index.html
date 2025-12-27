@@ -122,14 +122,16 @@ details[open] summary::after{
   padding:10px 0 0 0;
 }
 
-.invite-box{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background: rgba(173, 216, 230, 0.3); /* 薄い水色パステル */
+/* 個別ボックスを白寄り水色に */
+.invite-box, .comment-item{
+  background: rgba(220, 240, 255, 0.8); /* 白より水色 */
   border-radius:12px;
   padding:10px 12px;
   margin:6px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 3px 6px rgba(0,0,0,0.1);
 }
 
 .invite-info{
@@ -166,15 +168,6 @@ details[open] summary::after{
   border-radius:15px;
   border:2px solid #ce93d8;
   font-size:14px;
-}
-
-.comment-item{
-  background: rgba(173, 216, 230, 0.3); /* 薄い水色パステル */
-  border-radius:12px;
-  padding:10px;
-  margin:8px 0;
-  text-align:left;
-  box-shadow:0 3px 6px rgba(0,0,0,0.1);
 }
 
 .comment-name{
