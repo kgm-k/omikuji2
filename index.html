@@ -56,7 +56,7 @@ header{
   padding:15px;
   width:90%;
   max-width:500px;
-  background: rgba(173, 216, 230, 0.5);
+  background: rgba(173, 216, 230, 0.5); /* 薄い水色パステル */
   border-radius:18px;
   box-shadow:0 6px 12px rgba(0,0,0,0.15);
 }
@@ -82,11 +82,6 @@ header{
   transform:scale(.95);
 }
 
-/* ★ コピー成功時 */
-.main-button.copied{
-  background:#4fc3f7;
-}
-
 #omikuji-result{
   margin-top:10px;
   font-weight:bold;
@@ -97,6 +92,7 @@ details{
   border-radius:18px;
   margin-top:10px;
   overflow:hidden;
+  transition: all 0.3s ease;
 }
 
 summary{
@@ -107,18 +103,15 @@ summary{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.2);
   border-radius:16px;
   transition:.2s;
-}
-
-summary:hover{
-  background:rgba(255,255,255,0.35);
 }
 
 summary::after{
   content:"＋";
   font-size:20px;
+  transition:.2s;
 }
 
 details[open] summary::after{
@@ -129,12 +122,17 @@ details[open] summary::after{
   padding:10px 0 0 0;
 }
 
+/* 個別ボックスを白寄り水色に */
 .invite-box, .comment-item{
-  background: rgba(220, 240, 255, 0.8);
+  background: rgba(220, 240, 255, 0.8); /* 白より水色 */
   border-radius:12px;
   padding:10px 12px;
   margin:6px 0;
   box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  text-align:left;
+}
+
+.invite-info{
   text-align:left;
 }
 
@@ -179,10 +177,10 @@ details[open] summary::after{
 
 .comment-text{
   font-size:14px;
+  color:#333;
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -204,87 +202,111 @@ details[open] summary::after{
 <details class="card">
   <summary>ポイ活 招待コード</summary>
   <div class="invite-list">
-
     <div class="invite-box">
-      <div>
+      <div class="invite-info">
         <div class="service-name">トリマ</div>
         <div class="invite-code">TRIMA123</div>
         <div class="copy-message"></div>
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
-      <div>
+      <div class="invite-info">
         <div class="service-name">レシチャレ</div>
         <div class="invite-code">RESI456</div>
         <div class="copy-message"></div>
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
-      <div>
+      <div class="invite-info">
         <div class="service-name">マクロミル</div>
         <div class="invite-code">MACRO789</div>
         <div class="copy-message"></div>
       </div>
       <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-
     <div class="invite-box">
-      <div>
+      <div class="invite-info">
         <div class="service-name">dジョブ</div>
         <div class="invite-code">https://djob.docomo.ne.jp/invite/XXXXXX</div>
       </div>
-      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button">開く</a>
+      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button" style="text-decoration:none;">開く</a>
     </div>
-
   </div>
 </details>
 
 <details class="card">
   <summary>みんなのコメント</summary>
+  <form class="comment-form"
+    action="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/formResponse"
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="submitted=true;"
+  >
+    <input type="text" name="entry.243187617" placeholder="名前（任意）" class="comment-input">
+    <textarea name="entry.4743221" placeholder="コメント" required class="comment-textarea"></textarea>
+    <button type="submit" class="main-button">送信</button>
+  </form>
+
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){alert('送信しました！')}"></iframe>
+
   <div id="comment-list"></div>
 </details>
 
+<footer>
+  <p>© 2024 SNSまとめ＆おみくじサイト</p>
+</footer>
+
 <script>
-/* おみくじ */
-const results=[
-  {t:"大大吉",m:"あなたは神です！",c:"#ffd700",w:0.001},
-  {t:"大吉",m:"最高の運勢！",c:"#4caf50",w:0.15},
-  {t:"中吉",m:"いい一日になりそう",c:"#2196f3",w:0.3},
-  {t:"吉",m:"がんばれば実る",c:"#ffeb3b",w:0.4},
-  {t:"凶",m:"慎重に行こう",c:"#f44336",w:0.1}
+let submitted = false;
+
+const results = [
+  { t:"大大吉", m:"あなたは神です！", c:"#ffd700", w:0.001 },
+  { t:"大吉", m:"最高の運勢！", c:"#4caf50", w:0.15 },
+  { t:"中吉", m:"いい一日になりそう", c:"#2196f3", w:0.3 },
+  { t:"吉", m:"がんばれば実る", c:"#ffeb3b", w:0.4 },
+  { t:"凶", m:"慎重に行こう", c:"#f44336", w:0.1 }
 ];
 
-document.getElementById("omikuji-button").onclick=()=>{
-  let r=Math.random(),s=0;
-  for(let o of results){
-    s+=o.w;
-    if(r<=s){
-      const el=document.getElementById("omikuji-result");
-      el.textContent=o.t+" - "+o.m;
-      el.style.color=o.c;
+document.getElementById("omikuji-button").onclick = () => {
+  let r = Math.random(), s = 0;
+  for (let o of results) {
+    s += o.w;
+    if (r <= s) {
+      const el = document.getElementById("omikuji-result");
+      el.textContent = o.t + " - " + o.m;
+      el.style.color = o.c;
       break;
     }
   }
 };
 
-/* コピー */
-function copyText(btn){
-  const box=btn.parentElement;
-  const text=box.querySelector(".invite-code").textContent;
-  const msg=box.querySelector(".copy-message");
-  navigator.clipboard.writeText(text).then(()=>{
-    btn.classList.add("copied");
-    msg.textContent="コピーしました！";
-    setTimeout(()=>{
-      btn.classList.remove("copied");
-      msg.textContent="";
-    },1200);
+function copyText(btn) {
+  const box = btn.parentElement;
+  const text = box.querySelector(".invite-code").textContent;
+  const msg = box.querySelector(".copy-message");
+  navigator.clipboard.writeText(text).then(() => {
+    msg.textContent = "コピーしました！";
+    setTimeout(()=>msg.textContent="",2000);
   });
 }
+
+fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
+.then(r=>r.text())
+.then(t=>{
+  t.trim().split("\n").slice(1).reverse().forEach(row=>{
+    const c=row.split(",");
+    let name=(c[1]||"").replace(/"/g,"").trim()||"匿名";
+    let text=(c[2]||"").replace(/"/g,"").trim();
+    if(!text) return;
+    document.getElementById("comment-list").innerHTML +=
+      `<div class="comment-item">
+        <div class="comment-name">${name}</div>
+        <div class="comment-text">${text}</div>
+      </div>`;
+  });
+});
 </script>
 
 </body>
