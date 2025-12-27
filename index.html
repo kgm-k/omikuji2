@@ -21,7 +21,7 @@ header{
 }
 
 .welcome {
-  font-size: 2rem; /* 少し小さく */
+  font-size: 2rem;
   background: linear-gradient(45deg, #ff9a9e, #fad0c4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -30,14 +30,14 @@ header{
 }
 
 .subtitle {
-  font-size:1rem; /* 少し小さく */
+  font-size:1rem;
   color:#fff;
   margin-top:6px;
 }
 
 @keyframes float {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); } /* 少し控えめに */
+  100% { transform: translateY(-6px); }
 }
 
 .sns-links a{
@@ -54,8 +54,8 @@ header{
 }
 
 .card{
-  margin:15px auto; /* 少しコンパクトに */
-  padding:15px;     /* 少しコンパクトに */
+  margin:15px auto;
+  padding:15px;
   width:90%;
   max-width:500px;
   background:rgba(255,255,255,0.95);
@@ -85,13 +85,14 @@ header{
 }
 
 #omikuji-result{
-  margin-top:10px; /* 少しコンパクト */
+  margin-top:10px;
   font-weight:bold;
   font-size:16px;
 }
 
 details{
   border-radius:18px;
+  margin-top:10px;
 }
 
 summary{
@@ -121,7 +122,7 @@ summary:active{
   background:#e5e5e5;
 }
 
-.invite-list{
+.invite-list, #comment-list{
   padding:10px 0 0 0;
 }
 
@@ -242,8 +243,8 @@ summary:active{
   </div>
 </details>
 
-<section class="card">
-  <h2>コメント</h2>
+<details class="card">
+  <summary>みんなのコメント</summary>
   <form class="comment-form"
     action="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/formResponse"
     method="POST"
@@ -258,7 +259,7 @@ summary:active{
   <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){alert('送信しました！')}"></iframe>
 
   <div id="comment-list"></div>
-</section>
+</details>
 
 <footer>
   <p>© 2024 SNSまとめ＆おみくじサイト</p>
