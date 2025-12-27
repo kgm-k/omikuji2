@@ -1,166 +1,237 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SNSまとめ＆おみくじサイト</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNSまとめ＆おみくじサイト</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      font-family: 'Hachi Maru Pop', sans-serif;
-      background: linear-gradient(135deg, #2196f3, #9c27b0);
-      color: #333;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+body {
+  font-family: 'Hachi Maru Pop', sans-serif;
+  background: linear-gradient(135deg, #2196f3, #9c27b0);
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
 
-    header {
-      padding: 20px;
-      background-color: #0288d1;
-      color: white;
-    }
+header {
+  padding: 20px;
+  background-color: #0288d1;
+  color: white;
+}
 
-    .sns-links {
-      margin-top: 30px;
-    }
+.sns-links {
+  margin-top: 30px;
+}
 
-    .sns-links a {
-      font-size: 24px;
-      margin: 0 15px;
-      color: #333;
-      text-decoration: none;
-    }
+.sns-links a {
+  font-size: 24px;
+  margin: 0 15px;
+  color: #333;
+  text-decoration: none;
+}
 
-    /* ===== おみくじ ===== */
-    #omikuji {
-      margin-top: 50px;
-    }
+section {
+  margin-top: 50px;
+}
 
-    #omikuji button {
-      padding: 15px 40px;
-      font-size: 16px;
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      font-family: 'Hachi Maru Pop', sans-serif;
-    }
+/* ===== 共通カード ===== */
+.card {
+  margin: 40px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
 
-    #omikuji-result {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-    }
+/* ===== ボタン ===== */
+.main-button {
+  font-family: 'Hachi Maru Pop', sans-serif;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background-color: #e91e63;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    /* ===== コメント ===== */
-    .comment-area {
-      margin: 50px auto;
-      padding: 25px;
-      width: 90%;
-      max-width: 500px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 20px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
+.main-button:hover {
+  background-color: #c2185b;
+  transform: scale(1.05);
+}
 
-    .comment-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+/* ===== おみくじ ===== */
+#omikuji-result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
 
-    .comment-input,
-    .comment-textarea {
-      font-family: 'Hachi Maru Pop', sans-serif;
-      padding: 12px;
-      border-radius: 15px;
-      border: 2px solid #ce93d8;
-      font-size: 14px;
-    }
+/* ===== コメント ===== */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    .comment-button {
-      padding: 12px;
-      border-radius: 30px;
-      border: none;
-      background-color: #e91e63;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      font-family: 'Hachi Maru Pop', sans-serif;
-    }
+.comment-input,
+.comment-textarea {
+  font-family: 'Hachi Maru Pop', sans-serif;
+  padding: 12px;
+  border-radius: 15px;
+  border: 2px solid #ce93d8;
+}
 
-    .comment-item {
-      background: white;
-      border-radius: 15px;
-      padding: 12px 15px;
-      margin: 10px 0;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: left;
-    }
+.comment-item {
+  background: white;
+  border-radius: 15px;
+  padding: 12px;
+  margin: 10px 0;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-    .comment-name {
-      font-size: 14px;
-      color: #9c27b0;
-      margin-bottom: 5px;
-    }
+.comment-name {
+  font-size: 14px;
+  color: #9c27b0;
+}
 
-    .comment-text {
-      font-size: 14px;
-      color: #333;
-      line-height: 1.5;
-    }
+/* ===== ポイ活 ===== */
+.invite-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-    footer {
-      margin: 30px 0;
-      color: white;
-    }
-  </style>
+.invite-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.invite-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.service-name {
+  font-size: 14px;
+  color: #666;
+}
+
+.invite-code {
+  font-size: 16px;
+  color: #9c27b0;
+  word-break: break-all;
+}
+
+.copy-message {
+  font-size: 12px;
+  color: #4caf50;
+  height: 1em;
+}
+
+.open-link {
+  text-decoration: none;
+}
+</style>
 </head>
 
 <body>
+
 <header>
   <h1>ようこそ！</h1>
   <p>SNSリンクとおみくじを楽しもう！</p>
 </header>
 
 <div class="sns-links">
-  <a href="https://twitter.com/onakayowaio" target="_blank">Twitter</a>
-  <a href="https://misskey.flowers/@kgm" target="_blank">Misskey</a>
+  <a href="https://twitter.com/oo" target="_blank">Twitter</a>
+  <a href="https://misskey.flowers/" target="_blank">Misskey</a>
 </div>
 
-<main>
-  <section id="omikuji">
-    <h2>おみくじ</h2>
-    <button id="omikuji-button">おみくじを引く</button>
-    <p id="omikuji-result"></p>
-  </section>
+<!-- おみくじ -->
+<section class="card">
+  <h2>おみくじ</h2>
+  <button class="main-button" id="omikuji-button">おみくじを引く</button>
+  <p id="omikuji-result"></p>
+</section>
 
-  <section class="comment-area">
-    <h2>コメント</h2>
+<!-- ポイ活 -->
+<section class="card">
+  <h2>ポイ活 招待</h2>
 
-    <form
-      class="comment-form"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/formResponse"
-      method="POST"
-      target="hidden_iframe"
-      onsubmit="submitted=true;"
-    >
-      <input type="text" name="entry.243187617" placeholder="名前（任意）" class="comment-input">
-      <textarea name="entry.4743221" placeholder="コメント" rows="4" required class="comment-textarea"></textarea>
-      <button type="submit" class="comment-button">送信</button>
-    </form>
+  <div class="invite-list">
 
-    <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){alert('送信しました！');}"></iframe>
+    <div class="invite-box">
+      <div class="invite-info">
+        <span class="service-name">トリマ</span>
+        <span class="invite-code">TRIMA123</span>
+        <span class="copy-message"></span>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
+    </div>
 
-    <h3>みんなのコメント（24時間以内）</h3>
-    <div id="comment-list"></div>
-  </section>
-</main>
+    <div class="invite-box">
+      <div class="invite-info">
+        <span class="service-name">レシチャレ</span>
+        <span class="invite-code">RESI456</span>
+        <span class="copy-message"></span>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
+    </div>
+
+    <div class="invite-box">
+      <div class="invite-info">
+        <span class="service-name">マクロミル</span>
+        <span class="invite-code">MACRO789</span>
+        <span class="copy-message"></span>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
+    </div>
+
+    <div class="invite-box">
+      <div class="invite-info">
+        <span class="service-name">dジョブ</span>
+        <span class="invite-code">https://djob.docomo.ne.jp/invite/XXXXXX</span>
+      </div>
+      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button open-link">
+        開く
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- コメント -->
+<section class="card">
+  <h2>コメント</h2>
+
+  <form class="comment-form"
+    action="https://docs.google.com/forms/d/e/1FAIpQLSeqN2Bcu62Iec3QcdqpV9ooE0TOhKHcXrsB_H4UoyUtQvDcsQ/formResponse"
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="submitted=true;"
+  >
+    <input type="text" name="entry.243187617" placeholder="名前（任意）" class="comment-input">
+    <textarea name="entry.4743221" placeholder="コメント" required class="comment-textarea"></textarea>
+    <button type="submit" class="main-button">送信</button>
+  </form>
+
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){alert('送信しました！')}"></iframe>
+
+  <h3>みんなのコメント</h3>
+  <div id="comment-list"></div>
+</section>
 
 <footer>
   <p>© 2024 SNSまとめ＆おみくじサイト</p>
@@ -169,60 +240,56 @@
 <script>
 let submitted = false;
 
-/* ===== おみくじ ===== */
+/* おみくじ */
 const results = [
-  { result: "大大吉", message: "あなたは神です！✨", color: "#ffd700", weight: 0.001 },
-  { result: "大吉", message: "神！🌟", color: "#4caf50", weight: 0.15 },
-  { result: "中吉", message: "良い一日！😊", color: "#2196f3", weight: 0.3 },
-  { result: "吉", message: "がんばろう！💪", color: "#ffeb3b", weight: 0.4 },
-  { result: "凶", message: "慎重に！⚠️", color: "#f44336", weight: 0.1 }
+  { t:"大大吉", m:"あなたは神✨", c:"#ffd700", w:0.001 },
+  { t:"大吉", m:"神！", c:"#4caf50", w:0.15 },
+  { t:"中吉", m:"いい日になりそう", c:"#2196f3", w:0.3 },
+  { t:"吉", m:"努力が実る", c:"#ffeb3b", w:0.4 },
+  { t:"凶", m:"慎重に！", c:"#f44336", w:0.1 }
 ];
 
 document.getElementById("omikuji-button").onclick = () => {
-  let total = results.reduce((s, r) => s + r.weight, 0);
-  let rand = Math.random() * total;
-  for (let r of results) {
-    rand -= r.weight;
-    if (rand <= 0) {
+  let r = Math.random();
+  let sum = 0;
+  for (let o of results) {
+    sum += o.w;
+    if (r <= sum) {
       const el = document.getElementById("omikuji-result");
-      el.textContent = `${r.result} - ${r.message}`;
-      el.style.color = r.color;
+      el.textContent = o.t + " - " + o.m;
+      el.style.color = o.c;
       break;
     }
   }
 };
 
-/* ===== コメント表示（匿名＋24時間） ===== */
-const LIMIT_MS = 24 * 60 * 60 * 1000;
-
-fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
-  .then(res => res.text())
-  .then(text => {
-    const rows = text.trim().split("\n").slice(1).reverse();
-    const list = document.getElementById("comment-list");
-    const now = new Date();
-
-    rows.forEach(row => {
-      const cols = row.split(",");
-
-      const time = new Date((cols[0] || "").replace(/"/g,""));
-      if (isNaN(time) || now - time > LIMIT_MS) return;
-
-      let name = (cols[1] || "").replace(/"/g,"").trim();
-      if (!name) name = "匿名";
-
-      let comment = (cols[2] || "").replace(/"/g,"").trim();
-      if (!comment) return;
-
-      const div = document.createElement("div");
-      div.className = "comment-item";
-      div.innerHTML = `
-        <div class="comment-name">${name}</div>
-        <div class="comment-text">${comment}</div>
-      `;
-      list.appendChild(div);
-    });
+/* コピー */
+function copyText(btn) {
+  const box = btn.parentElement;
+  const text = box.querySelector(".invite-code").textContent;
+  const msg = box.querySelector(".copy-message");
+  navigator.clipboard.writeText(text).then(() => {
+    msg.textContent = "コピーしました！";
+    setTimeout(()=>msg.textContent="",2000);
   });
+}
+
+/* コメント表示 */
+fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
+.then(r=>r.text())
+.then(t=>{
+  t.trim().split("\n").slice(1).reverse().forEach(row=>{
+    const c=row.split(",");
+    let name=(c[1]||"").replace(/"/g,"").trim()||"匿名";
+    let text=(c[2]||"").replace(/"/g,"").trim();
+    if(!text) return;
+    document.getElementById("comment-list").innerHTML +=
+      `<div class="comment-item">
+        <div class="comment-name">${name}</div>
+        <div>${text}</div>
+      </div>`;
+  });
+});
 </script>
 
 </body>
