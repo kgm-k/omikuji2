@@ -3,111 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>link page</title>
-
+<title>SNSまとめ＆おみくじサイト</title>
 <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
-
 <style>
 body {
   font-family: 'Hachi Maru Pop', sans-serif;
   background: #7894C1;
-  color: #333;
-  text-align: center;
-  margin: 0;
+  margin:0;
+  text-align:center;
+  color:#333;
 }
 
-/* ===== ヘッダー ===== */
-header {
-  padding: 14px 10px;
-  color: white;
-}
-header h1 {
-  font-size: 18px;
-  margin: 0;
+header{
+  padding:20px;
 }
 
-/* ===== SNS ===== */
-.sns-links a {
-  display: block;
-  margin: 12px auto;
-  width: 80%;
-  max-width: 300px;
-  padding: 12px;
-  background: #eef6ff;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #333;
+.welcome {
+  font-size: 2rem;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: float 2s ease-in-out infinite alternate;
+  margin:0;
 }
 
-/* ===== 共通カード ===== */
-.card {
-  margin: 18px auto;
-  padding: 16px;
-  width: 90%;
-  max-width: 480px;
-  background: #dfeeff;
-  border-radius: 20px;
+.subtitle {
+  font-size:1rem;
+  color:#fff;
+  margin-top:6px;
 }
 
-/* ===== ボタン ===== */
-.main-button {
-  font-family: 'Hachi Maru Pop', sans-serif;
-  padding: 10px 22px;
-  border-radius: 25px;
-  border: none;
-  background-color: #6c7fd8;
-  color: white;
-  cursor: pointer;
-}
-.main-button.copied {
-  background-color: #4fc3f7;
-  transform: scale(0.95);
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
 }
 
-/* ===== おみくじ ===== */
-#omikuji-result {
-  margin-top: 10px;
-  font-size: 16px;
+.sns-links a{
+  display:block;
+  margin:10px auto;
+  width:80%;
+  max-width:300px;
+  padding:12px;
+  background:#fff;
+  border-radius:30px;
+  text-decoration:none;
+  color:#333;
+  box-shadow:0 4px 6px rgba(0,0,0,0.15);
 }
 
-/* ===== 招待コード ===== */
-.invite-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f4fbff;
-  border-radius: 16px;
-  padding: 12px;
-  margin-top: 10px;
-}
-.invite-info {
-  text-align: left;
-}
-.service-name {
-  font-size: 13px;
-  color: #666;
-}
-.invite-code {
-  font-size: 15px;
-  color: #5b5fc7;
-}
-.copy-message {
-  font-size: 11px;
-  color: #4caf50;
+.card{
+  margin:15px auto;
+  padding:15px;
+  width:90%;
+  max-width:500px;
+  background: rgba(173, 216, 230, 0.5);
+  border-radius:18px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* ===== コメント ===== */
-.comment-item {
-  background: #f4fbff;
-  border-radius: 14px;
-  padding: 10px;
-  margin-top: 10px;
-  text-align: left;
+.main-button{
+  font-family:'Hachi Maru Pop',sans-serif;
+  padding:10px 26px;
+  border:none;
+  border-radius:30px;
+  background:#e91e63;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:.2s;
 }
-.comment-name {
-  font-size: 13px;
-  color: #5b5fc7;
-  margin-bottom: 4px;
+
+.main-button:hover{
+  background:#c2185b;
+  transform:scale(1.05);
+}
+
+.main-button:active{
+  transform:scale(.95);
+}
+
+/* ★ コピー成功時 */
+.main-button.copied{
+  background:#4fc3f7;
+}
+
+#omikuji-result{
+  margin-top:10px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+details{
+  border-radius:18px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+summary{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(255,255,255,0.25);
+  border-radius:16px;
+  transition:.2s;
+}
+
+summary:hover{
+  background:rgba(255,255,255,0.35);
+}
+
+summary::after{
+  content:"＋";
+  font-size:20px;
+}
+
+details[open] summary::after{
+  content:"－";
+}
+
+.invite-list, #comment-list{
+  padding:10px 0 0 0;
+}
+
+.invite-box, .comment-item{
+  background: rgba(220, 240, 255, 0.8);
+  border-radius:12px;
+  padding:10px 12px;
+  margin:6px 0;
+  box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  text-align:left;
+}
+
+.service-name{
+  font-size:14px;
+  color:#666;
+}
+
+.invite-code{
+  font-size:15px;
+  color:#9c27b0;
+  word-break:break-all;
+}
+
+.copy-message{
+  font-size:12px;
+  color:#4caf50;
+  height:1em;
+}
+
+.comment-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.comment-input,
+.comment-textarea{
+  font-family:'Hachi Maru Pop',sans-serif;
+  padding:10px;
+  border-radius:15px;
+  border:2px solid #ce93d8;
+  font-size:14px;
+}
+
+.comment-name{
+  font-size:14px;
+  color:#9c27b0;
+  font-weight:600;
+  margin-bottom:4px;
+}
+
+.comment-text{
+  font-size:14px;
 }
 </style>
 </head>
@@ -115,7 +186,8 @@ header h1 {
 <body>
 
 <header>
-  <h1>こんにちは♪</h1>
+  <h1 class="welcome">こんにちは♪</h1>
+  <p class="subtitle">SNSリンクとおみくじを楽しもう！</p>
 </header>
 
 <div class="sns-links">
@@ -123,105 +195,96 @@ header h1 {
   <a href="https://misskey.flowers/" target="_blank">Misskey</a>
 </div>
 
-<!-- おみくじ -->
 <section class="card">
-  <button class="main-button" id="omikuji-button">おみくじ</button>
-  <div id="omikuji-result"></div>
+  <h2>おみくじ</h2>
+  <button class="main-button" id="omikuji-button">おみくじを引く</button>
+  <p id="omikuji-result"></p>
 </section>
 
-<!-- 招待コード -->
 <details class="card">
   <summary>ポイ活 招待コード</summary>
+  <div class="invite-list">
 
-  <div class="invite-box">
-    <div class="invite-info">
-      <div class="service-name">トリマ</div>
-      <div class="invite-code">TRIMA123</div>
-      <div class="copy-message"></div>
+    <div class="invite-box">
+      <div>
+        <div class="service-name">トリマ</div>
+        <div class="invite-code">TRIMA123</div>
+        <div class="copy-message"></div>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-    <button class="main-button" onclick="copyText(this)">コピー</button>
-  </div>
 
-  <div class="invite-box">
-    <div class="invite-info">
-      <div class="service-name">レシチャレ</div>
-      <div class="invite-code">RESI456</div>
-      <div class="copy-message"></div>
+    <div class="invite-box">
+      <div>
+        <div class="service-name">レシチャレ</div>
+        <div class="invite-code">RESI456</div>
+        <div class="copy-message"></div>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-    <button class="main-button" onclick="copyText(this)">コピー</button>
-  </div>
 
-  <div class="invite-box">
-    <div class="invite-info">
-      <div class="service-name">マクロミル</div>
-      <div class="invite-code">MACRO789</div>
+    <div class="invite-box">
+      <div>
+        <div class="service-name">マクロミル</div>
+        <div class="invite-code">MACRO789</div>
+        <div class="copy-message"></div>
+      </div>
+      <button class="main-button" onclick="copyText(this)">コピー</button>
     </div>
-    <button class="main-button" onclick="copyText(this)">コピー</button>
-  </div>
 
-  <div class="invite-box">
-    <div class="invite-info">
-      <div class="service-name">dジョブ</div>
-      <div class="invite-code">https://djob.docomo.ne.jp/invite/XXXXXX</div>
+    <div class="invite-box">
+      <div>
+        <div class="service-name">dジョブ</div>
+        <div class="invite-code">https://djob.docomo.ne.jp/invite/XXXXXX</div>
+      </div>
+      <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button">開く</a>
     </div>
-    <a href="https://djob.docomo.ne.jp/invite/XXXXXX" target="_blank" class="main-button">開く</a>
+
   </div>
 </details>
 
-<!-- コメント -->
 <details class="card">
-  <summary>コメント</summary>
+  <summary>みんなのコメント</summary>
   <div id="comment-list"></div>
 </details>
 
 <script>
 /* おみくじ */
 const results=[
-{t:"大吉",m:"いい日！",c:"#4caf50",w:0.4},
-{t:"中吉",m:"まあまあ",c:"#2196f3",w:0.4},
-{t:"凶",m:"慎重に",c:"#f44336",w:0.2}
+  {t:"大大吉",m:"あなたは神です！",c:"#ffd700",w:0.001},
+  {t:"大吉",m:"最高の運勢！",c:"#4caf50",w:0.15},
+  {t:"中吉",m:"いい一日になりそう",c:"#2196f3",w:0.3},
+  {t:"吉",m:"がんばれば実る",c:"#ffeb3b",w:0.4},
+  {t:"凶",m:"慎重に行こう",c:"#f44336",w:0.1}
 ];
+
 document.getElementById("omikuji-button").onclick=()=>{
-let r=Math.random(),s=0;
-for(let o of results){
-s+=o.w;
-if(r<=s){
-let el=document.getElementById("omikuji-result");
-el.textContent=o.t+" "+o.m;
-el.style.color=o.c;
-break;
-}}}
+  let r=Math.random(),s=0;
+  for(let o of results){
+    s+=o.w;
+    if(r<=s){
+      const el=document.getElementById("omikuji-result");
+      el.textContent=o.t+" - "+o.m;
+      el.style.color=o.c;
+      break;
+    }
+  }
+};
 
 /* コピー */
 function copyText(btn){
-const box=btn.parentElement;
-const text=box.querySelector(".invite-code").textContent;
-navigator.clipboard.writeText(text).then(()=>{
-btn.classList.add("copied");
-btn.textContent="OK";
-setTimeout(()=>{
-btn.classList.remove("copied");
-btn.textContent="コピー";
-},1200);
-});
+  const box=btn.parentElement;
+  const text=box.querySelector(".invite-code").textContent;
+  const msg=box.querySelector(".copy-message");
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add("copied");
+    msg.textContent="コピーしました！";
+    setTimeout(()=>{
+      btn.classList.remove("copied");
+      msg.textContent="";
+    },1200);
+  });
 }
-
-/* コメント表示 */
-fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
-.then(r=>r.text())
-.then(t=>{
-t.trim().split("\n").slice(1).reverse().forEach(row=>{
-const c=row.split(",");
-let name=(c[1]||"").replace(/"/g,"").trim()||"匿名";
-let text=(c[2]||"").replace(/"/g,"").trim();
-if(!text)return;
-document.getElementById("comment-list").innerHTML+=
-`<div class="comment-item">
-  <div class="comment-name">${name}</div>
-  <div>${text}</div>
-</div>`;
-});
-});
 </script>
 
 </body>
