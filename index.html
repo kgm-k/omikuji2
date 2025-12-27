@@ -20,6 +20,26 @@ header{
   color:#fff;
 }
 
+.welcome {
+  font-size: 2rem; /* 少し小さく */
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: float 2s ease-in-out infinite alternate;
+  margin:0;
+}
+
+.subtitle {
+  font-size:1rem; /* 少し小さく */
+  color:#fff;
+  margin-top:6px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); } /* 少し控えめに */
+}
+
 .sns-links a{
   display:block;
   margin:10px auto;
@@ -34,8 +54,8 @@ header{
 }
 
 .card{
-  margin:20px auto;
-  padding:20px;
+  margin:15px auto; /* 少しコンパクトに */
+  padding:15px;     /* 少しコンパクトに */
   width:90%;
   max-width:500px;
   background:rgba(255,255,255,0.95);
@@ -65,9 +85,9 @@ header{
 }
 
 #omikuji-result{
-  margin-top:15px;
+  margin-top:10px; /* 少しコンパクト */
   font-weight:bold;
-  font-size:18px;
+  font-size:16px;
 }
 
 details{
@@ -170,8 +190,8 @@ summary:active{
 <body>
 
 <header>
-  <h1>ようこそ！</h1>
-  <p>SNSリンク、招待コードまとめ(⁠✯⁠ᴗ⁠✯⁠)</p>
+  <h1 class="welcome">こんにちは♪</h1>
+  <p class="subtitle">SNSリンクとおみくじを楽しもう！</p>
 </header>
 
 <div class="sns-links">
@@ -247,7 +267,6 @@ summary:active{
 <script>
 let submitted = false;
 
-/* おみくじ */
 const results = [
   { t:"大大吉", m:"あなたは神です！", c:"#ffd700", w:0.001 },
   { t:"大吉", m:"最高の運勢！", c:"#4caf50", w:0.15 },
@@ -269,7 +288,6 @@ document.getElementById("omikuji-button").onclick = () => {
   }
 };
 
-/* コピー */
 function copyText(btn) {
   const box = btn.parentElement;
   const text = box.querySelector(".invite-code").textContent;
@@ -280,7 +298,6 @@ function copyText(btn) {
   });
 }
 
-/* コメント表示 */
 fetch("https://docs.google.com/spreadsheets/d/10ZAAj6s5S3XXE4oGGnhRnWG_LT5rzgRrhwGdD7iEQv4/gviz/tq?tqx=out:csv")
 .then(r=>r.text())
 .then(t=>{
